@@ -14,7 +14,7 @@ router.post('/login', authController.Login);
 // @route   Post api/auth/register
 // @desc    Register an account
 // @access  private
-router.post('/register', [hasPassword, hasUsername], authController.Register);
+router.post('/register', [hasPassword, hasUsername, isEmail], authController.Register);
 
 // @route   Post api/auth/validate
 // @desc    Send an email to validate account

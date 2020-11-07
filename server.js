@@ -13,6 +13,7 @@ const app = express();
 
 const errorHandler = require('./middlewares/errorHandler');
 const authRoutes = require('./routes/auth');
+const jobRoutes = require('./routes/job');
 const config = require('./configs/config.js');
 
 app.use(cors());
@@ -37,6 +38,7 @@ app.use(passportJWT.initialize());
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/job', jobRoutes);
 // app.use('/api/movie', passportJWT.authenticate(), movieRoutes);
 app.use(errorHandler);
 

@@ -1,7 +1,5 @@
 const {body} = require('express-validator');
 
-exports.hasDescription = body('description').isLength({min: 5}).withMessage("Name is required. Min length is 5 characters");
-
 exports.isEmail = body('email').isEmail().withMessage("Email field must contain a correct email");
 
 exports.hasPassword = body('password').exists().isLength({min: 6}).withMessage("Password is required. Min length is 6 characters");

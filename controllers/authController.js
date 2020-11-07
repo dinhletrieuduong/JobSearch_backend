@@ -29,17 +29,16 @@ exports.Register = async (req, res, next) => {
         user.role = req.body.role;
         let token = jwt_simple.encode({id: user.id}, config.secretOrKey);
 
-        let transport = nodemailer.createTransport(config.mailerOption);
-        const message = {
-            from: config.hostGmail,
-            to: req.body.email,
-            subject: 'Validate Account',
-            text: 'Click this link to validate your account'
-        };
-        user = await user.save();
+        // let transport = nodemailer.createTransport(config.mailerOption);
+        // const message = {
+        //     from: config.hostGmail,
+        //     to: req.body.email,
+        //     subject: 'Validate Account',
+        //     text: 'Click this link to validate your account'
+        // };
+        // user = await user.save();
 
-        await transport.sendMail(message);
-        // res.json({message: "Sent to: " + req.body.email});
+        // await transport.sendMail(message);
 
         return res.json({user, token});
     } catch (error) {
@@ -81,17 +80,7 @@ exports.Login = async (req, res, next) => {
 
 exports.me = async (req, res, next) => {
     try {
-        // const cacheValue = await redisClient.hget("user",);
-
-        // if (cacheValue) {
-        //     console.log("getting from redis");
-        //     const doc = JSON.parse(cacheValue)
-        //     const cacheUser = new User(doc);
-        //     return res.json(cacheUser);
-        // }
-        console.log("getting from db");
         const user = await User.findById(req.user);
-        // redisClient.hset("user", req.user.id, JSON.stringify(user));
         return res.json(user);
     } catch (error) {
         next(error);
