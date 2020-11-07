@@ -36,7 +36,7 @@ exports.Register = async (req, res, next) => {
         //     subject: 'Validate Account',
         //     text: 'Click this link to validate your account'
         // };
-        // user = await user.save();
+        user = await user.save();
 
         // await transport.sendMail(message);
 
@@ -51,6 +51,7 @@ exports.Login = async (req, res, next) => {
         const username = req.body.username;
         const password = req.body.password;
         const user = await User.findOne({username: username}).select("password");
+        console.log(user);
         if (!user) {
             const error = new Error("Wrong Credentials");
             error.statusCode = 401;

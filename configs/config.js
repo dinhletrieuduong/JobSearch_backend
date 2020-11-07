@@ -11,5 +11,9 @@ module.exports = {
         user: 'bluedev05@gmail.com',
         pass: 'trieuduong05'
     }
-  }
+  },
+  
+  cloudinary_name: 'dr3wu51fn',
+  cloudinary_api_key: '929462259362371',
+  cloudinary_api_secret: 'f4yL2bZiFrT3oUiqjKSqs9FjOXc',
 }
