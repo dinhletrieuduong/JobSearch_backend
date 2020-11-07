@@ -25,7 +25,7 @@ router.get('/all', jobController.GetAll);
 // @route   Post api/job/
 // @desc    Create a new Job
 // @access  private
-router.post('/', passportJWT.authenticate(), multerUploads, jobController.CreateNewJob);
+router.post('/new', passportJWT.authenticate(), multerUploads, jobController.CreateNewJob);
 
 // router.post('/upload', multer({storage}).single('image'), function (req, res, next) {
 //     const uniqueFilename = new Date().toISOString();
