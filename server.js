@@ -17,7 +17,7 @@ const jobRoutes = require('./routes/job');
 const config = require('./configs/config.js');
 
 app.use(cors());
-// app.use("/uploads/posters", express.static(path.join(__dirname, "public")));
+// app.use("/uploads/", express.static(path.join(__dirname, "public")));
 // Connecting to the database
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, { useNewUrlParser: true,  useUnifiedTopology: true })

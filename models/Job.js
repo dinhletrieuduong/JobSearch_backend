@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const JobSchema = new Schema({
     companyName: {type: String, required: false},
+    jobName: {type: String, required: false},
     address: {type: String, required: false},
     salary: {type: String, required: true},
     image: {type: String, required: false},
