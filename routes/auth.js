@@ -9,12 +9,12 @@ const {isEmail, hasPassword, hasUsername} = require('../utils/validators');
 // @route   Post api/auth/login
 // @desc    Login to system
 // @access  private
-router.post('/login', authController.Login);
+router.post('/login', isEmail, authController.Login);
 
 // @route   Post api/auth/register
 // @desc    Register an account
 // @access  private
-router.post('/register', [hasPassword, hasUsername, isEmail], authController.Register);
+router.post('/register', [isEmail, hasPassword], authController.Register);
 
 // @route   Post api/auth/validate
 // @desc    Send an email to validate account

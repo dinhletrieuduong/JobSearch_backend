@@ -12,19 +12,18 @@ const isEmpty = require('./../utils/isEmpty');
 exports.Register = async (req, res, next) => {
     try {
         validationHandler(req);
-        const existingUser = await User.findOne({username: req.body.username});
+        const existingUser = await User.findOne({email: req.body.email});
         if (existingUser) {
-            const error = new Error("Username already used");
+            const error = new Error("Email already used");
             error.statusCode = 403;
             throw error;
         }
         let user = new User();
-        user.username = req.body.username;
+        user.email = req.body.email;
         user.password = await user.encryptPassword(req.body.password);
         user.lastName = req.body.lastName;
         user.firstName = req.body.firstName;
         user.address = req.body.address;
-        user.email = req.body.email;
         user.phone = req.body.phone;
         user.role = req.body.role;
         let token = jwt_simple.encode({id: user.id}, config.secretOrKey);
@@ -48,9 +47,9 @@ exports.Register = async (req, res, next) => {
   
 exports.Login = async (req, res, next) => {
     try {
-        const username = req.body.username;
+        const email = req.body.email;
         const password = req.body.password;
-        const user = await User.findOne({username: username}).select("password");
+        const user = await User.findOne({email: email}).select("password");
         console.log(user);
         if (!user) {
             const error = new Error("Wrong Credentials");
@@ -59,7 +58,7 @@ exports.Login = async (req, res, next) => {
         }
         const validPassword = await user.validPassword(password);
         if (!validPassword) {
-            const error = new Error("Username or Password is wrongs");
+            const error = new Error("Email or Password is wrongs");
             error.statusCode = 401;
             throw error;
         }

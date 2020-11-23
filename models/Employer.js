@@ -2,19 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const EmployerSchema = new Schema({
-    companyName: {type: String, required: false},
-    address: {type: String, required: false},
-    email: {type: String, required: false},
-    hr: {type: String, required: true},
-    password: {type: String, required: true, select: false},
-    role: {type: String, required: false},
+    account: {type: Schema.Types.ObjectId, ref: 'user'},
+    company: {type: Schema.Types.ObjectId, ref: 'company'},
     phone: {type: String, required: false},
+    role: {type: String, required: false},
 
-    isValidated: {type: Boolean, default: false},
-    isDeleted: {type: Boolean, default: false},
-    isBanned: {type: Boolean, default: false},
-    registeredDate: {type: Date, default: Date.now() },
-    modifiedDate: {type: Date, default: Date.now() },
+    lastName: {type: String, required: false},
+    firstName: {type: String, required: false},
 });
 
-module.exports = User = mongoose.model('employer', EmployerSchema);
+module.exports = Employer = mongoose.model('employer', EmployerSchema);
