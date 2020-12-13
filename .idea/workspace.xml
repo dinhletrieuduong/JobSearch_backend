@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="00d8d893-5097-4f2f-b711-52df88d5dd75" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/configs/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/employeeController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/employerController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/jobController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/jobController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Company.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Company.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Employee.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Employer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Job.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Job.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/employee.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/employer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/job.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/job.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kveOHUBL1zYIrLgaLd0vNnmvD4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00d8d893-5097-4f2f-b711-52df88d5dd75" name="Default Changelist" comment="" />
+      <created>1606585459105</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606585459105</updated>
+      <workItem from="1606585460304" duration="7000" />
+      <workItem from="1606585540931" duration="180000" />
+      <workItem from="1606642088468" duration="1141000" />
+      <workItem from="1607519863820" duration="590000" />
+      <workItem from="1607774738185" duration="611000" />
+      <workItem from="1607869737592" duration="5441000" />
+      <workItem from="1607877076479" duration="1567000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

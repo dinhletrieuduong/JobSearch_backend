@@ -1,5 +1,6 @@
 module.exports = {
-  url: 'mongodb://admin:admin123@ds237723.mlab.com:37723/jobsearch',
+  url: 'mongodb+srv://admin:admin123@jobsearch.6five.mongodb.net/jobsearch?retryWrites=true&w=majority',
+  // url: 'mongodb://admin:admin123@ds237723.mlab.com:37723/jobsearch',
   secretOrKey: 'secret',
   PORT: 8000,
   hostGmail: 'bluedev05@gmail.com',

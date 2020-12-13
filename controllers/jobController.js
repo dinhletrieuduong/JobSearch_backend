@@ -63,3 +63,35 @@ exports.CreateNewJob = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.CloseJob = (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.SearchFullTextJob = async (req, res, next) => {
+    try {
+        let result = await Job.find({$text: {$search: req.searchString}})
+            // .skip(20)
+            // .limit(10)
+        res.json(result);
+
+    }
+    catch (e) {
+        next(e);
+    }
+}
+
+exports.SearchPartialTextJob = async (req, res, next) => {
+    try {
+        let result = await Job.find({ name: { $regex: "s", $options: "i" }});
+        console.log(result);
+        res.json(result);
+    }
+    catch (e) {
+        next(e)
+    }
+}

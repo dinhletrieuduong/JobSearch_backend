@@ -8,7 +8,8 @@ const CompanySchema = new Schema({
     companyEmail: {type: String, required: true},
     address: {type: String, required: false},
     hotline: {type: String, required: false},
-
+    categories: {type: [String], required: true},
+    
     isValidated: {type: Boolean, default: false},
     isBanned: {type: Boolean, default: false},
     registeredDate: {type: Date, default: Date.now() },

@@ -80,7 +80,13 @@ exports.Login = async (req, res, next) => {
 
 exports.me = async (req, res, next) => {
     try {
-        const user = await User.findById(req.user);
+        let user = await User.findById(req.user);
+        if (user.role === 1) {
+            user = User.findById(req.user);
+        }
+        else 
+            user = User.findById(req.user);
+            
         return res.json(user);
     } catch (error) {
         next(error);
@@ -196,4 +202,47 @@ exports.UpdateProfile = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+}
+
+exports.PostReview = (req, res, next) => {
+    try {
+        let user = User.findById(req.user._id);
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.UpdateEmployerCompanyInfo = async (req, res, next) => {
+    try {
+        let user = await User.findById(req.user._id);
+        console.log(user);
+        let company = new Company();
+        company.companyName = req.body.companyName;
+        company.companySize = req.body.companySize;
+        company.companyWebsite = req.body.companyWebsite;
+        company.companyEmail = req.body.companyEmail;
+        company.address = req.body.address;
+        company.hotline = req.body.hotline;
+
+        await company.save();
+        user.company = company._id;
+        await user.update();
+        res.json(user);
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.GetCv = async (req, res, next) => {
+
+}
+
+exports.AddCv = async (req, res, next) => {
+
+}
+
+exports.DeleteCv = async (req, res, next) => {
+
 }

@@ -3,7 +3,6 @@ const router = express.Router();
 const passportJWT = require('../middlewares/passportJWT')();
 
 const jobController = require('../controllers/jobController');
-const {isEmail, hasPassword, hasUsername} = require('../utils/validators');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -22,10 +21,20 @@ const multerUploads = multer({ storage }).single('image');
 // @access  public
 router.get('/all', jobController.GetAll);
 
+// @route   Get api/job/search/:searchString
+// @desc    Get all Jobs have partial search string
+// @access  public
+router.get('/search/:searchString', jobController.SearchPartialTextJob)
+
 // @route   Post api/job/
 // @desc    Create a new Job
 // @access  private
 router.post('/new', passportJWT.authenticate(), multerUploads, jobController.CreateNewJob);
+
+router.post('/close', passportJWT.authenticate(), jobController.CloseJob)
+
+module.exports = router;
+
 
 // router.post('/upload', multer({storage}).single('image'), function (req, res, next) {
 //     const uniqueFilename = new Date().toISOString();
@@ -40,18 +49,16 @@ router.post('/new', passportJWT.authenticate(), multerUploads, jobController.Cre
 //                 }
 //               }
 //             );
-    
+
 //            streamifier.createReadStream(req.file.buffer).pipe(stream);
 //         });
 //     };
-    
+
 //     async function upload(req) {
 //         let result = await streamUpload(req);
 //         console.log(result);
 //     }
-    
+
 //     upload(req);
 //     }
 // );
-    
-module.exports = router;
