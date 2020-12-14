@@ -5,13 +5,13 @@ const bcrypt = require('bcryptjs');
 
 const UserSchema = new Schema({
     email: {type: String, required: true},
-    // username: {type: String, required: true},
+    username: {type: String, required: true},
     password: {type: String, required: true, select: false},
     role: {type: Number, required: false}, // Employee hay Employer
     phone: {type: String, required: false},
     lastName: {type: String, required: false},
     firstName: {type: String, required: false},
-
+    avatar: {type: String, required: false},
     company: {type: Schema.Types.ObjectId, ref: 'company'},
     companyName: {type: String, required: false},
     address: {type: String, required: false},

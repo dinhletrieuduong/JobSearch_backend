@@ -30,6 +30,20 @@ exports.GetAll = async (req, res, next) => {
         next(error);
     }
 }
+exports.GetRecentJobs = async (req, res, next) => {
+    try {
+        const jobs = await Job.find().sort({createdAt: 1}).limit(20);
+        if (!jobs) {
+            const error = new Error("There is no jobs now");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        return res.json(jobs);
+    } catch (error) {
+        next(error);
+    }
+}
 exports.CreateNewJob = async (req, res, next) => {
     console.log(req.file);
     try {
@@ -46,9 +60,11 @@ exports.CreateNewJob = async (req, res, next) => {
             newJob.companyName = req.body.companyName
             newJob.address = req.body.address
             newJob.jobName = req.body.jobName
-            newJob.salary = req.body.salary
+            newJob.jobDescription = req.body.jobDescription
+            newJob.salaryTo = req.body.salaryTo
             newJob.image = image
             newJob.benefit = req.body.benefit
+            newJob.categories = req.body.categories
             return newJob.save().then(() => {
                 res.status(200).json({
                     message: 'Create job success',
@@ -87,7 +103,11 @@ exports.SearchFullTextJob = async (req, res, next) => {
 
 exports.SearchPartialTextJob = async (req, res, next) => {
     try {
-        let result = await Job.find({ name: { $regex: "s", $options: "i" }});
+        let result = await Job.find({
+            name: { $regex: req.params.name, $options: "i" },
+            location: { $regex: req.params.location, $options: "i" },
+            section: { $regex: req.params.section, $options: "i" },
+        });
         console.log(result);
         res.json(result);
     }

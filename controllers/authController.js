@@ -1,11 +1,13 @@
 const jwt_simple = require('jwt-simple');
 const nodemailer = require('nodemailer');
+const gravatar = require('gravatar');
 
 const User = require('./../models/User');
 
 const config = require('../configs/config');
 
 const validationHandler = require('./../utils/validationHandler');
+const isEmail = require('./../utils/validators');
 
 const isEmpty = require('./../utils/isEmpty');
 
@@ -18,9 +20,16 @@ exports.Register = async (req, res, next) => {
             error.statusCode = 403;
             throw error;
         }
+        const avatar = gravatar.url(req.body.email, {
+            s: '200', // Size
+            r: 'pg', // Rating
+            d: 'mm', // default
+        });
         let user = new User();
+        user.username = req.body.username;
         user.email = req.body.email;
         user.password = await user.encryptPassword(req.body.password);
+        user.avatar = avatar;
         user.lastName = req.body.lastName;
         user.firstName = req.body.firstName;
         user.address = req.body.address;
@@ -47,9 +56,18 @@ exports.Register = async (req, res, next) => {
   
 exports.Login = async (req, res, next) => {
     try {
-        const email = req.body.email;
+        let type = isEmail(req.body.email);
+        let user;
         const password = req.body.password;
-        const user = await User.findOne({email: email}).select("password");
+
+        if (type) {
+            const email = req.body.email;
+            user = await User.findOne({email: email}).select("password");
+        }
+        else {
+            const username = req.body.email;
+            user = await User.findOne({username: username}).select("password");
+        }
         console.log(user);
         if (!user) {
             const error = new Error("Wrong Credentials");
@@ -81,12 +99,6 @@ exports.Login = async (req, res, next) => {
 exports.me = async (req, res, next) => {
     try {
         let user = await User.findById(req.user);
-        if (user.role === 1) {
-            user = User.findById(req.user);
-        }
-        else 
-            user = User.findById(req.user);
-            
         return res.json(user);
     } catch (error) {
         next(error);
@@ -204,10 +216,19 @@ exports.UpdateProfile = async (req, res, next) => {
     }
 }
 
-exports.PostReview = (req, res, next) => {
+exports.PostReview = async (req, res, next) => {
     try {
-        let user = User.findById(req.user._id);
+        // let user = User.findById(req.user._id);
 
+        let review = new Review({
+            employee: req.user._id,
+            employer: req.body.employerID,
+            rate: req.body.rate,
+            comment: isEmpty(req.body.comment) ? '' : req.body.comment
+        });
+
+        await review.save();
+        res.json({message: 'Posted!'});
     } catch (error) {
         next(error)
     }
@@ -236,13 +257,43 @@ exports.UpdateEmployerCompanyInfo = async (req, res, next) => {
 }
 
 exports.GetCv = async (req, res, next) => {
+    try {
+        let cv = Cv.find({employee: req.user._id});
+        if (!cv) {
+            const error = new Error("This account have no Cv");
+            error.statusCode = 404;
+            throw error;
+        }
 
+        res.json(cv);
+    }
+    catch (e) {
+        next(e)
+    }
 }
 
 exports.AddCv = async (req, res, next) => {
+    try {
+        let cv = new Cv({
+            htmlContent: req.body.htmlContent,
+        });
 
+        await cv.save();
+
+        res.json({message: 'Success'})
+    }
+    catch (e) {
+        next(e)
+    }
 }
 
 exports.DeleteCv = async (req, res, next) => {
+    try {
+        await Cv.findByIdAndDelete(req.body.cvID);
 
+        res.json({message: 'Success'})
+    }
+    catch (e) {
+        next(e)
+    }
 }

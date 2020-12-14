@@ -21,10 +21,15 @@ const multerUploads = multer({ storage }).single('image');
 // @access  public
 router.get('/all', jobController.GetAll);
 
-// @route   Get api/job/search/:searchString
+// @route   Get api/job/recent
+// @desc    Get all Jobs
+// @access  public
+router.get('/recent', jobController.GetRecentJobs);
+
+// @route   Get api/job/:searchString
 // @desc    Get all Jobs have partial search string
 // @access  public
-router.get('/search/:searchString', jobController.SearchPartialTextJob)
+router.get('/:name&:location&:section', jobController.SearchPartialTextJob)
 
 // @route   Post api/job/
 // @desc    Create a new Job

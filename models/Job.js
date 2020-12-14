@@ -2,15 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const JobSchema = new Schema({
-    companyName: {type: String, required: false}, //
-    jobName: {type: String, required: true}, //
-    jobDescription: {type: String, required: true}, //
-    image: {type: String, required: false}, //
-    benefit: {type: String, required: false}, // 
+    companyName: {type: String, required: false},
+    jobName: {type: String, required: true},
+    jobDescription: {type: String, required: true},
+    image: {type: String, required: false},
+    benefit: {type: String, required: false},
     salaryTo: {type: String, required: true},
     categories: {type: [String], required: true},
     isClosed: {type: Boolean, default: false},
-    
+
+    createdAt: {type: Date, default: Date.now()},
     // jobBudget: {type: String, required: false}, // Index to easy to search and find for job seekers
     // location: {type: String, required: false},
     // isRemoted: {type: Boolean, required: true},

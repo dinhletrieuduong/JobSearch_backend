@@ -6,6 +6,7 @@ const CompanySchema = new Schema({
     companySize: {type: Number, required: true},
     companyWebsite: {type: String, required: true},
     companyEmail: {type: String, required: true},
+    logo: {type: String, required: false},
     address: {type: String, required: false},
     hotline: {type: String, required: false},
     categories: {type: [String], required: true},

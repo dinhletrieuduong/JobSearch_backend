@@ -53,12 +53,16 @@ router.post('/unBan', authController.UnBanAccount);
 
 // @route   Post api/auth/company
 // @desc    Post company info employer
-// @access  public
+// @access  private
 router.post('/companyEmployer', passportJWT.authenticate(), authController.UpdateEmployerCompanyInfo);
 
 
+// @route   Post api/auth/cv
+// @desc    Manage Cv
+// @access  private
 router.get('/cv', passportJWT.authenticate(), authController.GetCv);
-
 router.post('/cv', passportJWT.authenticate(), authController.AddCv);
+router.delete('/cv', passportJWT.authenticate(), authController.DeleteCv);
+// router.get('/candidate/', passportJWT.authenticate(), authController.SearchPartitionTextCandidate);
 
 module.exports = router;

@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema({
-    employer: {type: Schema.Types.ObjectId, ref: 'employer'},
-    employee: {type: Schema.Types.ObjectId, ref: 'employee'},
+    employer: {type: Schema.Types.ObjectId, ref: 'user'},
+    employee: {type: Schema.Types.ObjectId, ref: 'user'},
     rate: {type: Number, required: true},
     comment: {type: String, required: false},
 

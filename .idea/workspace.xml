@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00d8d893-5097-4f2f-b711-52df88d5dd75" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/configs/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/employeeController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/employerController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/companyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/companyController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/jobController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/jobController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Company.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Company.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Employee.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Employer.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Job.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Job.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Review.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Review.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/employee.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/employer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/company.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/company.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/job.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/job.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kveOHUBL1zYIrLgaLd0vNnmvD4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,9 +38,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -55,6 +64,9 @@
       <workItem from="1607774738185" duration="611000" />
       <workItem from="1607869737592" duration="5441000" />
       <workItem from="1607877076479" duration="1567000" />
+      <workItem from="1607926347100" duration="2963000" />
+      <workItem from="1607935016037" duration="1364000" />
+      <workItem from="1607940786437" duration="1018000" />
     </task>
     <servers />
   </component>
