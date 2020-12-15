@@ -44,6 +44,20 @@ exports.GetRecentJobs = async (req, res, next) => {
         next(error);
     }
 }
+exports.GetJobByQuantity = async (req, res, next) => {
+    try {
+        const job = await Job.find().sort({createdAt: 1}).limit(req.params.quantity);
+        if (!job) {
+            const error = new Error("There is no jobs now");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        return res.json(job);
+    } catch (error) {
+        next(error);
+    }
+}
 exports.GetJobByID = async (req, res, next) => {
     try {
         const job = await Job.findById(req.params.id)
