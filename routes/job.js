@@ -25,6 +25,7 @@ router.get('/all', jobController.GetAll);
 // @desc    Get all Jobs
 // @access  public
 router.get('/recent', jobController.GetRecentJobs);
+router.get('/:id', jobController.GetJobByID);
 
 // @route   Get api/job/:searchString
 // @desc    Get all Jobs have partial search string

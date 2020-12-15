@@ -44,6 +44,20 @@ exports.GetRecentJobs = async (req, res, next) => {
         next(error);
     }
 }
+exports.GetJobByID = async (req, res, next) => {
+    try {
+        const job = await Job.findById(req.params.id)
+        if (!job) {
+            const error = new Error("There is no jobs have that ID");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        return res.json(job);
+    } catch (error) {
+        next(error);
+    }
+}
 exports.CreateNewJob = async (req, res, next) => {
     console.log(req.file);
     try {
