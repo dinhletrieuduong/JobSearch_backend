@@ -16,11 +16,17 @@ router.get('/', (async (req, res, next) => {
 
 router.post('/', (async (req, res, next) => {
     try {
-        let city = new City({
-            cityName: req.body.cityName
-        })
-        await city.save();
-        res.json(city);
+        let isExisted = City.find({cityName: req.body.cityName});
+        if (!isExisted) {
+            let city = new City({
+                cityName: req.body.cityName
+            })
+            await city.save();
+            res.json(city);
+        }
+        else {
+            res.status(400).json({message: 'City name already exists'});
+        }
     }
     catch (e) {
         next(e);

@@ -13,12 +13,18 @@ exports.GetAllCategories = async (req, res, next) => {
 
 exports.AddNewCategory = async (req, res, next) => {
     try {
-        const category = new Category({
-            category: req.body.category,
-        })
+        let isExisted = Category.find({category: req.body.category});
+        if (!isExisted) {
+            const category = new Category({
+                category: req.body.category,
+            })
 
-        await category.save();
-        res.json(category);
+            await category.save();
+            res.json(category);
+        }
+        else {
+            res.status(400).json({message: 'Category already exists'});
+        }
     } catch (error) {
         next(error)
     }
