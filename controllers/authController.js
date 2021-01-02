@@ -7,9 +7,10 @@ const User = require('./../models/User');
 const config = require('../configs/config');
 
 const validationHandler = require('./../utils/validationHandler');
-const isEmail = require('./../utils/validators');
+const {isEmail} = require('./../utils/validators');
 
 const isEmpty = require('./../utils/isEmpty');
+const {validateEmail} = require("../utils/validators");
 
 exports.Register = async (req, res, next) => {
     try {
@@ -56,19 +57,14 @@ exports.Register = async (req, res, next) => {
   
 exports.Login = async (req, res, next) => {
     try {
-        let type = isEmail(req.body.email);
-        let user;
+        let type = validateEmail(req.body.username);
+        const username = req.body.username;
+        let user = await User.findOne({username: username}).select("password");
         const password = req.body.password;
 
         if (type) {
-            const email = req.body.email;
-            user = await User.findOne({email: email}).select("password");
+            user = await User.findOne({email: username}).select("password");
         }
-        else {
-            const username = req.body.email;
-            user = await User.findOne({username: username}).select("password");
-        }
-        console.log(user);
         if (!user) {
             const error = new Error("Wrong Credentials");
             error.statusCode = 401;
