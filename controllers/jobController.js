@@ -92,6 +92,7 @@ exports.CreateNewJob = async (req, res, next) => {
             newJob.salaryTo = req.body.salaryTo
             newJob.image = image
             newJob.benefit = req.body.benefit
+            newJob.location = req.body.location
             newJob.categories = req.body.categories
             return newJob.save().then(() => {
                 res.status(200).json({
