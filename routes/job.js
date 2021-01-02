@@ -31,7 +31,7 @@ router.get('/quantity/:quantity', jobController.GetJobByID);
 // @route   Get api/job/:searchString
 // @desc    Get all Jobs have partial search string
 // @access  public
-router.get('/:name&:location&:section', jobController.SearchPartialTextJob)
+router.get('/:name&:location&:category', jobController.SearchPartialTextJob)
 
 // @route   Post api/job/
 // @desc    Create a new Job

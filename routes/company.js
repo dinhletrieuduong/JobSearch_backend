@@ -5,5 +5,5 @@ const companyController = require('../controllers/companyController');
 // @route   Get api/company/:companyName
 // @desc    Find company by name
 // @access  public
-router.get('/:name&:location&:section', companyController.SearchPartialTextCompany);
+router.get('/:name&:location&:category', companyController.SearchPartialTextCompany);
 

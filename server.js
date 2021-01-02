@@ -15,6 +15,8 @@ const errorHandler = require('./middlewares/errorHandler');
 const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/job');
 const reviewRoutes = require('./routes/review');
+const categoryRoutes = require('./routes/category');
+const cityRoutes = require('./routes/city');
 
 const config = require('./configs/config.js');
 
@@ -42,6 +44,8 @@ app.use(passportJWT.initialize());
 app.use('/api/auth', authRoutes);
 app.use('/api/job', jobRoutes);
 app.use('/api/review', reviewRoutes);
+app.use('/api/category', categoryRoutes);
+app.use('/api/city', cityRoutes);
 app.use(errorHandler);
 
 var PORT = process.env.PORT || config.PORT;

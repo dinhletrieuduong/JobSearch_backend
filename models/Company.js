@@ -7,10 +7,11 @@ const CompanySchema = new Schema({
     companyWebsite: {type: String, required: true},
     companyEmail: {type: String, required: true},
     logo: {type: String, required: false},
-    address: {type: String, required: false},
+    address: {type: String, required: true},
+    location: {type: String, required: true},
     hotline: {type: String, required: false},
     categories: {type: [String], required: true},
-    
+
     isValidated: {type: Boolean, default: false},
     isBanned: {type: Boolean, default: false},
     registeredDate: {type: Date, default: Date.now() },

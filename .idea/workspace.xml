@@ -3,19 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="00d8d893-5097-4f2f-b711-52df88d5dd75" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/catalogController.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/companyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/companyController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/jobController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/jobController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Company.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Company.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Job.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Job.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Review.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Review.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/company.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/company.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/job.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/job.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +41,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/models" />
+      <recent name="$PROJECT_DIR$/routes" />
+      <recent name="$PROJECT_DIR$/controllers" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -66,7 +62,14 @@
       <workItem from="1607877076479" duration="1567000" />
       <workItem from="1607926347100" duration="2963000" />
       <workItem from="1607935016037" duration="1364000" />
-      <workItem from="1607940786437" duration="1018000" />
+      <workItem from="1607940786437" duration="1627000" />
+      <workItem from="1608033720456" duration="121000" />
+      <workItem from="1608033930172" duration="194000" />
+      <workItem from="1608541536052" duration="85000" />
+      <workItem from="1608541633774" duration="91000" />
+      <workItem from="1608541764372" duration="84000" />
+      <workItem from="1608542037212" duration="647000" />
+      <workItem from="1609054116369" duration="5595000" />
     </task>
     <servers />
   </component>
