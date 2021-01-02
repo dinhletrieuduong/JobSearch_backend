@@ -60,9 +60,9 @@ router.post('/companyEmployer', passportJWT.authenticate(), authController.Updat
 // @route   Post api/auth/cv
 // @desc    Manage Cv
 // @access  private
-router.get('/cv', passportJWT.authenticate(), authController.GetCv);
-router.post('/cv', passportJWT.authenticate(), authController.AddCv);
-router.delete('/cv', passportJWT.authenticate(), authController.DeleteCv);
+router.get('/resume', passportJWT.authenticate(), authController.GetCv);
+router.post('/resume', passportJWT.authenticate(), authController.AddCv);
+router.delete('/resume', passportJWT.authenticate(), authController.DeleteCv);
 // router.get('/candidate/', passportJWT.authenticate(), authController.SearchPartitionTextCandidate);
 
 module.exports = router;

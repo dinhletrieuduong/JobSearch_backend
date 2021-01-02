@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const gravatar = require('gravatar');
 
 const User = require('./../models/User');
+const Resume = require('../models/Resume');
 
 const config = require('../configs/config');
 
@@ -254,14 +255,14 @@ exports.UpdateEmployerCompanyInfo = async (req, res, next) => {
 
 exports.GetCv = async (req, res, next) => {
     try {
-        let cv = Cv.find({employee: req.user._id});
-        if (!cv) {
+        console.log(req.user)
+        let resumes = await Resume.find({employee: req.user._id});
+        if (!resumes) {
             const error = new Error("This account have no Cv");
             error.statusCode = 404;
             throw error;
         }
-
-        res.json(cv);
+        res.json(resumes);
     }
     catch (e) {
         next(e)
@@ -270,7 +271,8 @@ exports.GetCv = async (req, res, next) => {
 
 exports.AddCv = async (req, res, next) => {
     try {
-        let cv = new Cv({
+        let cv = new Resume({
+            employee: req.user._id,
             htmlContent: req.body.htmlContent,
         });
 
