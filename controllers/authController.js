@@ -240,7 +240,7 @@ exports.UpdateProfile = async (req, res, next) => {
         user.email = isEmpty(req.body.email) ? user.email : req.body.email;
         user.phone = isEmpty(req.body.phone) ? user.phone : req.body.phone;
         user.modifiedDate = Date.now();
-
+        await user.save();
         return res.json({message: "Updated!"});
     } catch (error) {
         next(error);
