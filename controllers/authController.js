@@ -92,7 +92,7 @@ exports.Login = async (req, res, next) => {
     try {
         let type = validateEmail(req.body.username);
         const username = req.body.username;
-        let user = await User.findOne({username: username}).select("password");
+        let user = await User.findOne({username: username}).select(["password", "role"]);
         const password = req.body.password;
 
         if (type) {
@@ -114,10 +114,10 @@ exports.Login = async (req, res, next) => {
             error.statusCode = 401;
             throw error;
         }
-
         let token = jwt_simple.encode({id: user.id}, config.secretOrKey);
         return res.json({
-            userID: user.id, 
+            userID: user.id,
+            role: user.role,
             token
         });
     } catch (error) {
