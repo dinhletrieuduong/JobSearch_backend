@@ -21,7 +21,7 @@ const multerUploads = multer({ storage }).single('image');
 // @route   Post api/auth/login
 // @desc    Login to system
 // @access  private
-router.post('/login', authController.Login);
+router.post('/login', [isEmail, hasPassword, hasUsername], authController.Login);
 
 // @route   Post api/auth/register
 // @desc    Register an account

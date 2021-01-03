@@ -21,12 +21,12 @@ const {validateEmail} = require("../utils/validators");
 exports.Register = async (req, res, next) => {
     try {
         validationHandler(req);
-        if (isEmpty(req.body.username)) {
+        if (isEmpty(req.body.username) || req.body.username.length < 5) {
             const error = new Error("Username is required. Min length is 5 characters");
             error.statusCode = 403;
             throw error;
         }
-        if (isEmpty(req.body.password)) {
+        if (isEmpty(req.body.password) || req.body.password.length < 6) {
             const error = new Error("Password is required. Min length is 6 characters");
             error.statusCode = 403;
             throw error;
