@@ -6,39 +6,73 @@ const User = require('./../models/User');
 const Resume = require('../models/Resume');
 
 const config = require('../configs/config');
-
+const multer = require('multer');
+const upload = multer();
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+    cloud_name: config.cloudinary_name,
+    api_key: config.cloudinary_api_key,
+    api_secret: config.cloudinary_api_secret
+});
 const validationHandler = require('./../utils/validationHandler');
-const {isEmail} = require('./../utils/validators');
-
 const isEmpty = require('./../utils/isEmpty');
 const {validateEmail} = require("../utils/validators");
 
 exports.Register = async (req, res, next) => {
     try {
         validationHandler(req);
-        const existingUser = await User.findOne({email: req.body.email});
+        if (isEmpty(req.body.username)) {
+            const error = new Error("Username is required. Min length is 5 characters");
+            error.statusCode = 403;
+            throw error;
+        }
+        if (isEmpty(req.body.password)) {
+            const error = new Error("Password is required. Min length is 6 characters");
+            error.statusCode = 403;
+            throw error;
+        }
+        if (isEmpty(req.body.email)) {
+            const error = new Error("Email field must contain a correct email");
+            error.statusCode = 403;
+            throw error;
+        }
+
+        const existingUser = await User.findOne({username: req.body.username});
         if (existingUser) {
+            const error = new Error("Username already used");
+            error.statusCode = 403;
+            throw error;
+        }
+        const existingEmail = await User.findOne({email: req.body.email});
+        if (existingEmail) {
             const error = new Error("Email already used");
             error.statusCode = 403;
             throw error;
         }
-        const avatar = gravatar.url(req.body.email, {
-            s: '200', // Size
-            r: 'pg', // Rating
-            d: 'mm', // default
-        });
+
+        // const path = req.file.path;
+        // const uniqueFilename = new Date().toISOString();
+        // let result = await cloudinary.uploader.upload(path, {
+        //     public_id: `jobsearch/${uniqueFilename}`, tags: `Job`
+        // })
+        // const image = result.url;
+        // const avatar = gravatar.url(req.body.email, {
+        //     s: '200', // Size
+        //     r: 'pg', // Rating
+        //     d: 'mm', // default
+        // });
         let user = new User();
         user.username = req.body.username;
         user.email = req.body.email;
         user.password = await user.encryptPassword(req.body.password);
-        user.avatar = avatar;
+        // user.avatar = avatar;
+        user.avatar = req.body.avatar;
         user.lastName = req.body.lastName;
         user.firstName = req.body.firstName;
         user.address = req.body.address;
         user.phone = req.body.phone;
         user.role = req.body.role;
         let token = jwt_simple.encode({id: user.id}, config.secretOrKey);
-
         // let transport = nodemailer.createTransport(config.mailerOption);
         // const message = {
         //     from: config.hostGmail,
@@ -47,9 +81,7 @@ exports.Register = async (req, res, next) => {
         //     text: 'Click this link to validate your account'
         // };
         user = await user.save();
-
         // await transport.sendMail(message);
-
         return res.json({user, token});
     } catch (error) {
         next(error);
@@ -176,15 +208,18 @@ exports.UnBanAccount = async (req, res, next) => {
 exports.UpdatePassword = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id).select("password");
-        console.log(user);
         if (!user) {
             const error = new Error("This account is not exists now");
             error.statusCode = 404;
             throw error;
         }
+        if (user.password !== req.body.oldPassword) {
+            const error = new Error("Old password does not match");
+            error.statusCode = 400;
+            throw error;
+        }
         user.password = await user.encryptPassword(req.body.newPassword);
         await user.save();
-        console.log(user);
         return res.json({message: "Updated!"});
     } catch (error) {
         next(error);
@@ -194,7 +229,6 @@ exports.UpdatePassword = async (req, res, next) => {
 exports.UpdateProfile = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id);
-        console.log(user);
         if (!user) {
             const error = new Error("This account is not exists now");
             error.statusCode = 404;
@@ -234,7 +268,6 @@ exports.PostReview = async (req, res, next) => {
 exports.UpdateEmployerCompanyInfo = async (req, res, next) => {
     try {
         let user = await User.findById(req.user._id);
-        console.log(user);
         let company = new Company();
         company.companyName = req.body.companyName;
         company.companySize = req.body.companySize;
@@ -255,7 +288,6 @@ exports.UpdateEmployerCompanyInfo = async (req, res, next) => {
 
 exports.GetCv = async (req, res, next) => {
     try {
-        console.log(req.user)
         let resumes = await Resume.find({employee: req.user._id});
         if (!resumes) {
             const error = new Error("This account have no Cv");
@@ -287,8 +319,7 @@ exports.AddCv = async (req, res, next) => {
 
 exports.DeleteCv = async (req, res, next) => {
     try {
-        await Cv.findByIdAndDelete(req.body.cvID);
-
+        await Cv.findByIdAndDelete(req.params.id);
         res.json({message: 'Success'})
     }
     catch (e) {

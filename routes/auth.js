@@ -6,15 +6,27 @@ const passportJWT = require('../middlewares/passportJWT')();
 const authController = require('../controllers/authController');
 const {isEmail, hasPassword, hasUsername} = require('../utils/validators');
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+// const storage = multer.memoryStorage();
+const multerUploads = multer({ storage }).single('image');
+
 // @route   Post api/auth/login
 // @desc    Login to system
 // @access  private
-router.post('/login', isEmail, authController.Login);
+router.post('/login', authController.Login);
 
 // @route   Post api/auth/register
 // @desc    Register an account
 // @access  private
-router.post('/register', [isEmail, hasPassword], authController.Register);
+router.post('/register', multerUploads, authController.Register);
 
 // @route   Post api/auth/validate
 // @desc    Send an email to validate account
@@ -62,7 +74,7 @@ router.post('/companyEmployer', passportJWT.authenticate(), authController.Updat
 // @access  private
 router.get('/resume', passportJWT.authenticate(), authController.GetCv);
 router.post('/resume', passportJWT.authenticate(), authController.AddCv);
-router.delete('/resume', passportJWT.authenticate(), authController.DeleteCv);
+router.delete('/resume/:id', passportJWT.authenticate(), authController.DeleteCv);
 // router.get('/candidate/', passportJWT.authenticate(), authController.SearchPartitionTextCandidate);
 
 module.exports = router;

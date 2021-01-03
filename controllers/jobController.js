@@ -1,6 +1,3 @@
-const jwt_simple = require('jwt-simple');
-const nodemailer = require('nodemailer');
-
 const Job = require('../models/Job');
 
 const validationHandler = require('../utils/validationHandler');
@@ -84,7 +81,6 @@ exports.CreateNewJob = async (req, res, next) => {
         .then((result) => {
             const image = result.url;
             const newJob = new Job();
-            console.log(req.body);
             newJob.companyName = req.body.companyName
             newJob.address = req.body.address
             newJob.jobName = req.body.jobName
@@ -119,7 +115,7 @@ exports.CloseJob = (req, res, next) => {
 
 exports.SearchFullTextJob = async (req, res, next) => {
     try {
-        let result = await Job.find({$text: {$search: req.searchString}})
+        let result = await Job.find({$text: {$search: req.params.name}})
             // .skip(20)
             // .limit(10)
         res.json(result);
