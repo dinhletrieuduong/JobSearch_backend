@@ -319,7 +319,7 @@ exports.AddCv = async (req, res, next) => {
 
 exports.DeleteCv = async (req, res, next) => {
     try {
-        await Cv.findByIdAndDelete(req.params.id);
+        await Resume.findByIdAndDelete(req.params.id);
         res.json({message: 'Success'})
     }
     catch (e) {
