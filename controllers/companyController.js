@@ -1,5 +1,14 @@
 const Company = require('../models/Company');
 
+exports.GetAllCompany = async (req, res, next) => {
+    try {
+        let company = await Company.find({});
+        res.json(company);
+    }
+    catch (e) {
+        next(e)
+    }
+}
 exports.SearchPartialTextCompany = async (req, res, next) => {
     try {
         let page = Number(req.params.page) - 1

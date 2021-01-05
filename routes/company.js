@@ -6,6 +6,7 @@ const companyController = require('../controllers/companyController');
 // @desc    Find company by name
 // @access  public
 router.get('/:name&:location&:category&:page&:quantity', companyController.SearchPartialTextCompany);
+router.get('/', companyController.GetAllCompany);
 
 
 module.exports = router;

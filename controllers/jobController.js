@@ -101,6 +101,7 @@ exports.CreateNewJob = async (req, res, next) => {
         //     data: { err }
         // }));
                 const newJob = new Job();
+                newJob.employer = req.user._id
                 newJob.companyName = req.body.companyName
                 newJob.address = req.body.address
                 newJob.jobName = req.body.jobName
@@ -182,6 +183,17 @@ exports.SearchPartialTextJob = async (req, res, next) => {
             }).skip(page*quantity).limit(quantity);
         }
         res.json(result);
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
+exports.GetJobByEmployer = async (req, res, next) => {
+    try {
+        let jobs = await Job.find({employer: req.user._id});
+
+        res.json(jobs);
     }
     catch (e) {
         next(e)

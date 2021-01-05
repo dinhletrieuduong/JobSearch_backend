@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const JobSchema = new Schema({
+    employer: {type: String, required: false},
     companyName: {type: String, required: false},
     jobName: {type: String, required: true},
     jobDescription: {type: String, required: true},
