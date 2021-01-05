@@ -36,7 +36,8 @@ router.get('/:name&:location&:category&:page&:quantity', jobController.SearchPar
 // @route   Post api/job/
 // @desc    Create a new Job
 // @access  private
-router.post('/new', passportJWT.authenticate(), multerUploads, jobController.CreateNewJob);
+// router.post('/new', passportJWT.authenticate(), multerUploads, jobController.CreateNewJob);
+router.post('/new', passportJWT.authenticate(), jobController.CreateNewJob);
 
 router.post('/close', passportJWT.authenticate(), jobController.CloseJob)
 

@@ -70,44 +70,76 @@ exports.GetJobByID = async (req, res, next) => {
     }
 }
 exports.CreateNewJob = async (req, res, next) => {
-    console.log(req.file);
+    // console.log(req.file);
     try {
-        const path = req.file.path;
+        // const path = req.file.path;
 
-        const uniqueFilename = new Date().toISOString()
-        cloudinary.uploader.upload(path, {
-            public_id: `jobsearch/${uniqueFilename}`, tags: `Job`
-          })
-        .then((result) => {
-            const image = result.url;
-            const newJob = new Job();
-            newJob.companyName = req.body.companyName
-            newJob.address = req.body.address
-            newJob.jobName = req.body.jobName
-            newJob.jobDescription = req.body.jobDescription
-            newJob.salaryTo = req.body.salaryTo
-            newJob.image = image
-            newJob.benefit = req.body.benefit
-            newJob.location = req.body.location
-            newJob.categories = req.body.categories
-            return newJob.save().then(() => {
-                res.status(200).json({
-                    message: 'Create job success',
-                })
-            })
+        // const uniqueFilename = new Date().toISOString()
+        // cloudinary.uploader.upload(path, {
+        //     public_id: `jobsearch/${uniqueFilename}`, tags: `Job`
+        //   })
+        // .then((result) => {
+        //     const image = result.url;
+        //     const newJob = new Job();
+        //     newJob.companyName = req.body.companyName
+        //     newJob.address = req.body.address
+        //     newJob.jobName = req.body.jobName
+        //     newJob.jobDescription = req.body.jobDescription
+        //     newJob.salaryTo = req.body.salaryTo
+        //     newJob.image = image
+        //     newJob.benefit = req.body.benefit
+        //     newJob.location = req.body.location
+        //     newJob.categories = req.body.categories
+        //     return newJob.save().then(() => {
+        //         res.status(200).json({
+        //             message: 'Create job success',
+        //         })
+        //     })
+        // })
+        // .catch((err) => res.status(400).json({
+        //     message: 'something went wrong while processing your request',
+        //     data: { err }
+        // }));
+                const newJob = new Job();
+                newJob.companyName = req.body.companyName
+                newJob.address = req.body.address
+                newJob.jobName = req.body.jobName
+                newJob.jobDescription = req.body.jobDescription
+                newJob.salaryTo = req.body.salaryTo
+                newJob.image = req.body.image
+                newJob.benefit = req.body.benefit
+                newJob.location = req.body.location
+                newJob.categories = req.body.categories
+        await newJob.save()
+        res.status(200).json({
+            message: 'Create job success',
         })
-        .catch((err) => res.status(400).json({
-            message: 'something went wrong while processing your request',
-            data: { err }
-        }));
     } catch (error) {
         next(error);
     }
 }
 
-exports.CloseJob = (req, res, next) => {
+exports.CloseJob = async (req, res, next) => {
     try {
         
+    } catch (error) {
+        next(error);
+    }
+}
+exports.ApplyJob = async (req, res, next) => {
+    try {
+        // console.log(req.user)
+        let job = await Job.findById(req.params.jobID);
+        console.log(job)
+        if (!job) {
+            const error = new Error("Job not found");
+            error.statusCode = 404;
+            throw error;
+        }
+        // Job.findAndUpdate
+        job.candidates.push(req.user._id)
+        await job.save();
+        res.json({message: 'Success!'});
     } catch (error) {
         next(error);
     }

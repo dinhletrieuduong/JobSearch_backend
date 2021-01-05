@@ -167,7 +167,7 @@ exports.ForgotPassword = async (req, res, next) => {
         // user = await User.findOneAndUpdate({email: req.body.email}, {password: randomstring});
         user.password = await user.encryptPassword(randomstring);
         user.save();
-        
+
         let transport = nodemailer.createTransport(config.mailerOption);
         const message = {
             from: config.hostGmail, // Sender address
