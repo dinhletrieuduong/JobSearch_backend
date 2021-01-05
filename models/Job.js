@@ -13,6 +13,8 @@ const JobSchema = new Schema({
     isClosed: {type: Boolean, default: false},
 
     createdAt: {type: Date, default: Date.now()},
+
+    candidates: {type: [String], default: [], required: false},
     // jobBudget: {type: String, required: false}, // Index to easy to search and find for job seekers
     // location: {type: String, required: false},
     // isRemoted: {type: Boolean, required: true},

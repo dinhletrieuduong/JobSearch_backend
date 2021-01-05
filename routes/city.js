@@ -16,7 +16,7 @@ router.get('/', (async (req, res, next) => {
 
 router.post('/', (async (req, res, next) => {
     try {
-        let isExisted = City.find({cityName: req.body.cityName});
+        let isExisted = await City.find({cityName: req.body.cityName});
         if (!isExisted) {
             let city = new City({
                 cityName: req.body.cityName

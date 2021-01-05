@@ -16,6 +16,7 @@ const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/job');
 const reviewRoutes = require('./routes/review');
 const categoryRoutes = require('./routes/category');
+const companyRoutes = require('./routes/company');
 const cityRoutes = require('./routes/city');
 
 const config = require('./configs/config.js');
@@ -45,6 +46,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/job', jobRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/company', companyRoutes);
 app.use('/api/city', cityRoutes);
 app.use(errorHandler);
 

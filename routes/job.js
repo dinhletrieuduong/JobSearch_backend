@@ -28,7 +28,7 @@ router.get('/recent', jobController.GetRecentJobs);
 router.get('/id/:id', jobController.GetJobByID);
 router.get('/quantity/:quantity', jobController.GetJobByID);
 
-// @route   Get api/job/:searchString
+// @route   Get api/job/:name&:location&:category&:page&:quantity
 // @desc    Get all Jobs have partial search string
 // @access  public
 router.get('/:name&:location&:category&:page&:quantity', jobController.SearchPartialTextJob)
@@ -39,6 +39,9 @@ router.get('/:name&:location&:category&:page&:quantity', jobController.SearchPar
 router.post('/new', passportJWT.authenticate(), multerUploads, jobController.CreateNewJob);
 
 router.post('/close', passportJWT.authenticate(), jobController.CloseJob)
+
+
+router.post('/apply/:jobID', passportJWT.authenticate(), jobController.ApplyJob)
 
 module.exports = router;
 
