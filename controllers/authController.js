@@ -153,19 +153,27 @@ exports.Validate = async (req, res, next) => {
 
 exports.ForgotPassword = async (req, res, next) => {
     try {
-        const user = await User.findOne({email: req.body.email});
-        if (!user || !user.isValidated) {
-            const error = new Error("This account is not exists or validated");
+        let user = await User.findOne({email: req.body.email}).select('password');
+        // if (!user || !user.isValidated) {
+        if (!user) {
+            // const error = new Error("This account is not exists or validated");
+            const error = new Error("This account is not exists");
             error.statusCode = 400;
             throw error;
         }
+        var randomstring = Math.random()                        // Generate random number, eg: 0.123456
+            .toString(36)           // Convert  to base-36 : "0.4fzyo82mvyr"
+            .slice(-8);// Cut off last 8 characters : "yo82mvyr"
+        // user = await User.findOneAndUpdate({email: req.body.email}, {password: randomstring});
+        user.password = await user.encryptPassword(randomstring);
+        user.save();
         
         let transport = nodemailer.createTransport(config.mailerOption);
         const message = {
             from: config.hostGmail, // Sender address
             to: req.body.email,         // Single or List of recipients
             subject: 'Forgot Password', // Subject line
-            text: 'Click this link to reset your password: ' // Plain text body
+            text: 'Your new password is: ' + randomstring// Plain text body
         };
         let info = await transport.sendMail(message);
         res.json({message: "Sent to: " + req.body.email});
