@@ -298,11 +298,25 @@ exports.GetCv = async (req, res, next) => {
     try {
         let resumes = await Resume.find({employee: req.user._id});
         if (!resumes) {
-            const error = new Error("This account have no Cv");
+            const error = new Error("This account have no Resume");
             error.statusCode = 404;
             throw error;
         }
         res.json(resumes);
+    }
+    catch (e) {
+        next(e)
+    }
+}
+exports.GetCvDetail = async (req, res, next) => {
+    try {
+        let resume = await Resume.findById(req.params.id);
+        if (!resume) {
+            const error = new Error("There no Resume have this id");
+            error.statusCode = 404;
+            throw error;
+        }
+        res.json(resume);
     }
     catch (e) {
         next(e)
@@ -325,6 +339,15 @@ exports.AddCv = async (req, res, next) => {
     }
 }
 
+exports.UpdateCv = async (req, res, next) => {
+    try {
+        await Resume.findByIdAndUpdate(req.params.id, {htmlContent: req.body.htmlContent});
+        res.json({message: 'Success'})
+    }
+    catch (e) {
+        next(e)
+    }
+}
 exports.DeleteCv = async (req, res, next) => {
     try {
         await Resume.findByIdAndDelete(req.params.id);

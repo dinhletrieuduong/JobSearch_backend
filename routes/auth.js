@@ -73,7 +73,9 @@ router.post('/companyEmployer', passportJWT.authenticate(), authController.Updat
 // @desc    Manage Cv
 // @access  private
 router.get('/resume', passportJWT.authenticate(), authController.GetCv);
+router.get('/resume/:id', passportJWT.authenticate(), authController.GetCvDetail);
 router.post('/resume', passportJWT.authenticate(), authController.AddCv);
+router.put('/resume/:id', passportJWT.authenticate(), authController.UpdateCv);
 router.delete('/resume/:id', passportJWT.authenticate(), authController.DeleteCv);
 // router.get('/candidate/', passportJWT.authenticate(), authController.SearchPartitionTextCandidate);
 

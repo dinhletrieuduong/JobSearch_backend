@@ -26,7 +26,7 @@ router.get('/all', jobController.GetAll);
 // @access  public
 router.get('/recent', jobController.GetRecentJobs);
 router.get('/id/:id', jobController.GetJobByID);
-router.get('/employer', jobController.GetJobByEmployer);
+router.get('/employer', passportJWT.authenticate(), jobController.GetJobByEmployer);
 router.get('/quantity/:quantity', jobController.GetJobByID);
 
 // @route   Get api/job/:name&:location&:category&:page&:quantity

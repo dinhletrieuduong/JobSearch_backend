@@ -11,7 +11,7 @@ cloudinary.config({
     cloud_name: config.cloudinary_name,
     api_key: config.cloudinary_api_key,
     api_secret: config.cloudinary_api_secret
-  });
+});
 
 exports.GetAll = async (req, res, next) => {
     try {
@@ -100,18 +100,19 @@ exports.CreateNewJob = async (req, res, next) => {
         //     message: 'something went wrong while processing your request',
         //     data: { err }
         // }));
-                const newJob = new Job();
-                newJob.employer = req.user._id
-                newJob.companyName = req.body.companyName
-                newJob.address = req.body.address
-                newJob.jobName = req.body.jobName
-                newJob.jobDescription = req.body.jobDescription
-                newJob.salaryTo = req.body.salaryTo
-                newJob.image = req.body.image
-                newJob.benefit = req.body.benefit
-                newJob.location = req.body.location
-                newJob.categories = req.body.categories
+        const newJob = new Job();
+        newJob.employer = req.user._id
+        newJob.companyName = req.body.companyName
+        newJob.address = req.body.address
+        newJob.jobName = req.body.jobName
+        newJob.jobDescription = req.body.jobDescription
+        newJob.salaryTo = req.body.salaryTo
+        newJob.image = req.body.image
+        newJob.benefit = req.body.benefit
+        newJob.location = req.body.location
+        newJob.categories = req.body.categories
         await newJob.save()
+        console.log(newJob)
         res.status(200).json({
             message: 'Create job success',
         })
@@ -122,7 +123,7 @@ exports.CreateNewJob = async (req, res, next) => {
 
 exports.CloseJob = async (req, res, next) => {
     try {
-        
+
     } catch (error) {
         next(error);
     }
@@ -149,8 +150,8 @@ exports.ApplyJob = async (req, res, next) => {
 exports.SearchFullTextJob = async (req, res, next) => {
     try {
         let result = await Job.find({$text: {$search: req.params.name}})
-            // .skip(20)
-            // .limit(10)
+        // .skip(20)
+        // .limit(10)
         res.json(result);
 
     }
