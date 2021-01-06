@@ -81,6 +81,13 @@ exports.Register = async (req, res, next) => {
         //     text: 'Click this link to validate your account'
         // };
         user = await user.save();
+        
+        if (user.role === 1) {
+            const company = new Company();
+            company.companyName = user.firstName + " " + user.lastName;
+            company.employer = user._id;
+            await company.save();
+        }
         // await transport.sendMail(message);
         return res.json({user, token});
     } catch (error) {
