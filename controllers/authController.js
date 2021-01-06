@@ -364,3 +364,18 @@ exports.DeleteCv = async (req, res, next) => {
         next(e)
     }
 }
+
+exports.GetUserByID = async (req, res, next) => {
+    try {
+        let user = await User.findById(req.params.id);
+        if (!user) {
+            const error = new Error("There no id exists in database");
+            error.statusCode = 404;
+            throw error;
+        }
+        res.json(user)
+    }
+    catch (e) {
+        next(e)
+    }
+}

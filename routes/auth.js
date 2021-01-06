@@ -77,6 +77,7 @@ router.get('/resume/:id', passportJWT.authenticate(), authController.GetCvDetail
 router.post('/resume', passportJWT.authenticate(), authController.AddCv);
 router.put('/resume/:id', passportJWT.authenticate(), authController.UpdateCv);
 router.delete('/resume/:id', passportJWT.authenticate(), authController.DeleteCv);
+router.get('/:id', authController.GetUserByID);
 // router.get('/candidate/', passportJWT.authenticate(), authController.SearchPartitionTextCandidate);
 
 module.exports = router;
